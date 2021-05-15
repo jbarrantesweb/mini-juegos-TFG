@@ -1,0 +1,186 @@
+@font-face {
+    font-family: 'Pizarra';
+    src: url(../fonts/GochiHand-Regular.ttf);
+}
+
+.clearfix {
+    float: none;
+    clear: both;
+}
+
+/* PROGRESO */
+
+#status {
+    padding-top: 1.5%;
+   /* width: 49%;   */
+    margin: 0px auto;
+   /* height: 13%;  */
+    overflow: hidden;
+}
+
+#posicion_barra {
+    width: 35%;
+    margin: 0px auto;
+}
+
+#progreso {
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background-color: #eeeeee;
+    border: 4px solid #413c3c;
+    border-radius: 8px;
+}
+
+#miBarra {
+    position: absolute;
+    width: 1%;
+    height: 100%;
+    background-color: #ddd;
+}
+
+#play_repeat {
+   /* position: absolute;  */
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    padding-top: 20px;
+    /*bottom: 33px; */
+   /* left: 46%;  */
+}
+
+#play {
+    width: 64px;
+    height: 64px;
+    background-color: #fffdfdad;
+    border-radius: 50px;
+}
+
+#marcador {
+    /*position: absolute;*/
+    width: 8%;
+    height: 70px;
+    /* bottom: 50px;  */
+    /*left: 15%; */
+    font-size: 45px;
+}
+
+#puntos {
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+    float: left;
+    color: #ffffffe1;
+    line-height: 100%;
+    margin-left: 12%;
+    padding-top: 80px;
+}
+
+/* BOTONES */
+
+#botones {
+    position: absolute;
+    width: 240px;
+    height: 105px;
+    bottom: 50px;
+    left: 40%;
+}
+
+#correcto {
+    display: block;
+    float: left;
+}
+
+#incorrecto {
+    display: block;
+    float: left;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px) {}
+
+@media only screen and (max-width: 858px) {
+
+    #botones {
+        position: absolute;
+        width: 240px;
+        height: 23%;
+        bottom: 24%;
+        left: 36%;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    #marcador{
+        width: 75%;
+        height: 70px;
+        bottom: 24px;
+        left: 27%;
+        font-size: 100px;
+    }
+
+    #puntos {
+        width: 100%;
+        font-size: 45px;
+        line-height: 100%;
+        margin-left: 1%;
+    }
+
+    #botones {
+        width: 240px;
+        height: 100px;
+        bottom: 201px;
+        left: 35%;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+   
+}
+
+
+@media only screen and (max-width: 576px) {
+
+    #status {
+        width: 100%;
+    }
+/* 
+    #header #menu .sprite-menu:active #desplegable li {
+        display: block;
+    }
+    
+    
+    #desplegable li:active {
+        box-shadow: 0px 0px 5px #a77433b2 inset;
+        background-color: #a77533 !important;
+        cursor: pointer;
+    } */
+    
+
+    
+    #marcador {
+        width: 100%;
+        height: 73px;
+        bottom: 39px;
+        left: 4%;
+    }
+
+    #puntos {
+        width: 100%;
+        font-size: 45px;
+        line-height: 100%;
+        margin-left: 1%;
+    }
+    #botones {
+        position: absolute;
+        width: 240px;
+        height: 100px;
+        bottom: 176px;
+        left: 24%;
+    }
+
+
+}

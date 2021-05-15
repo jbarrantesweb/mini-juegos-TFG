@@ -1,0 +1,209 @@
+/* TABLERO */
+
+.tablero_ranking {
+    padding-left: 15px;
+    font-size: 4vw !important;
+    padding-top: 2%;
+    text-align: left !important;
+    line-height: 230% !important;
+}
+
+.tablero_gameOver {
+    text-align: center !important;
+    font-size: 5vw !important;
+    line-height: 150% !important;
+}
+
+.tablero_negro {
+    background: url(../fondos/black_linen_v2.png);
+    color: white;
+
+}
+
+#campos {
+    width: 75%;
+    height: 50%;
+    margin: 0px auto;
+}
+
+
+/*
+
+@media only screen and (max-width: 1200px){
+    .tablero_gameOver {
+        font-size: 70% !important;
+        line-height: 150% !important;
+    }
+}
+
+@media only screen and (max-width: 858px) {
+    #tablero {
+
+        margin: auto;
+        width: 80%;
+        height: 70%;
+        font-size: 100px;
+        line-height: 200%;
+        margin-bottom: 2%;
+
+    }
+    #campos {
+        width: 90%;
+        height: 100px;
+    }
+
+    .tablero_ingame {
+        padding-top: 2%;
+        font-size: 90%;
+    }
+
+    .tablero_gameOver {
+        font-size: 70% !important;
+        line-height: 150% !important;
+    }
+
+    .tablero_ranking {
+        padding-left: 15px;
+        font-size: 50% !important;
+        padding-top: 2%;
+        line-height: 230% !important;
+    }
+    .formulario_inicial h2 {
+        text-align: center;
+        font-size: 50px !important;
+        line-height: 200%;
+    }
+    
+    .formulario_inicial {
+        font-size: 4.5vw !important;
+        line-height: 100% !important;
+        padding: 60px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #tablero {
+
+        margin: auto;
+        width: 90%;
+        height: 60%;
+        font-size: 100px;
+        line-height: 200%;
+        margin-bottom: 2%;
+    }
+    #contenido_tablero{
+        height: 100%;
+    }
+    
+    #campos {
+        width: 100%;
+        height: 50%;
+        margin: 0px auto;
+    }
+    .tablero_ingame {
+        padding-top: 2%;
+        font-size: 80px;
+    }
+
+
+    .tablero_gameOver {
+        font-size: 50px !important;
+        line-height: 150% !important;
+    }
+
+    .tablero_ranking {
+        padding-left: 15px;
+        font-size: 50px !important;
+        padding-top: 2%;
+        line-height: 230% !important;
+    }
+    .formulario_inicial h2 {
+        text-align: center;
+        font-size: 50px !important;
+        line-height: 100%;
+    }
+    
+    .formulario_inicial {
+        font-size: 4.5vw !important;
+        line-height: 100% !important;
+        padding: 60px;
+    
+    }
+    .formulario_inicial #enviar {
+        width: 21%;
+        height: 11%;
+        bottom: 18px;
+        left: 69%;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 3vw;
+        
+    }
+    .formulario_inicial #info_formulario_registro {
+        width: 23%;
+        height: 11%;
+        bottom: 15px;
+        left: 5%;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 3vw;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    #tablero {
+
+        margin: auto;
+        width: 100%;
+        height: 69%;
+        font-size: 80px;
+        line-height: 100%;
+
+    }
+    #menu-user-logo {
+        margin-left: 12px;
+
+    }
+
+    .tablero_ingame {
+        padding-top: 50px;
+        font-size: 90%;
+    }
+
+
+    .tablero_gameOver {
+        padding-top: 50px;
+        font-size: 70% !important;
+        line-height: 150% !important;
+    }
+
+    .tablero_ranking {
+        padding-left: 15px;
+        font-size: 30px !important;
+        padding-top: 2%;
+        line-height: 230% !important;
+    }
+    .formulario_inicial h2 {
+        text-align: center;
+        font-size: 50px !important;
+        line-height: 100%;
+    }
+    
+    .formulario_inicial {
+        font-size: 4.5vw !important;
+        line-height: 100% !important;
+        padding: 60px;
+    
+    }
+    #formulario input {
+        border-radius: 5px;
+        height: 39px;
+        margin: 10px;
+        width: 229px;
+        font-size: 17px;
+    }
+}
+
+
+
+*/

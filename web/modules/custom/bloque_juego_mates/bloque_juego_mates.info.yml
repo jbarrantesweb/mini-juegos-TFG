@@ -1,0 +1,8 @@
+name: Bloque Juego Mates
+description: 'Create custom block game math'
+package: custom-jorge
+
+type: module
+core_version_requirement: ^8.8.0 || ^9.0
+libraries:
+ - 'bloque_juego_mates/bloque_juego_mates_librarie'

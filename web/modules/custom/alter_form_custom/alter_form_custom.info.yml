@@ -1,0 +1,5 @@
+name: Alter Form Custom Module
+type: module
+core: '8.x'
+core_version_requirement: ^8 || ^9
+description: 'Modulo para traducir al castellano los formularios del core de drupal'

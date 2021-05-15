@@ -1,0 +1,9 @@
+/**
+ * If using a CSS pre-processor, tell it to overwrite this file. If not, place
+ * your custom CSS modifications here.
+ */
+
+ #navbar #navbar-collapse a {
+     line-height: 42px;
+     font-size: 18px;
+ }

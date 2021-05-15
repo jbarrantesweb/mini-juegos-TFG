@@ -1,0 +1,29 @@
+<?php
+/**
+ *  Implementation of hook_form_alter
+ */
+
+function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+    dpm($form_id);
+    //dpm($form);
+   // dpm($form['preview']);
+
+    if($form_id == 'user_form') {
+        $form['actions']['submit']['#value'] = t('Guardar');
+    }
+
+    if($form_id == 'node_asignatura_edit_form') {
+        $form['field_usuarios_matriculados']['widget']['add_more']['#value'] = t('Matricular a otro usuario');
+        $form['actions']['submit']['#value'] = t('Guardar');
+        $form['actions']['preview']['#value'] = t('Previsualizar');
+        $form['actions']['delete']['#title'] = t('Borrar Asignatura');
+    }
+
+    if ($form_id == 'search_block_form') {
+        $form['keys']['#description'] = 'Busca Centros, noticias, asignaturas, etc en GameMoodle!';
+        $form['keys']['#title'] = 'Buscar';
+      }
+
+     
+}
