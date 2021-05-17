@@ -8,6 +8,14 @@
     line-height: 230% !important;
 }
 
+.acertada{
+    color: #31a131 !important;
+}
+
+.fallada{
+    color: #a33030 !important;
+}
+
 .tablero_gameOver {
     text-align: center !important;
     font-size: 5vw !important;

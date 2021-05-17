@@ -114,6 +114,13 @@ docReady(function () {
   //cuando acertamos
   function acierto() {
     //console.log("acierto");
+    contenido_tablero.classList.add('acertada');
+    puntos.classList.add('acertada');
+    setTimeout( () => { 
+      contenido_tablero.classList.remove('acertada');
+      puntos.classList.remove('acertada');
+       }, 500);
+
     sumaPunto();
     tiempo -= 1;
     parar();
@@ -124,6 +131,14 @@ docReady(function () {
   //cuando fallamos o la barra llega al final
   function fallo() {
     //console.log("fallo");
+    contenido_tablero.classList.add('fallada');
+    puntos.classList.add('fallada');
+
+    setTimeout( () => { 
+      contenido_tablero.classList.remove('fallada');
+      puntos.classList.remove('fallada');
+       }, 500);
+    
     parar();
     tiempo -= 15;
     if (continuar) ronda();

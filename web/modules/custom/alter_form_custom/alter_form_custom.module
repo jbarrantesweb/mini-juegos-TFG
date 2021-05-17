@@ -1,26 +1,39 @@
 <?php
+
 /**
  *  Implementation of different hooks for spanish traduction for GameMoodle web
-*/
+ */
+function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
 
-function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-
-    //dpm($form_id);
     //dpm($form);
-   
+    //dpm($form);
     //dpm($form['preview']);
 
-    if($form_id == 'user_form') {
+    if ($form_id == 'user_form') {
         $form['actions']['submit']['#value'] = t('Guardar');
+        $form['actions']['submit']['#value'] = t('Guardar');
+        $form['actions']['delete']['#value'] = t('Borrar cuenta');
+        $form['account']['mail']['#title'] = t('Email');
+        $form['account']['mail']['#description'] = t('Introduce una dirección válida de Email. El email no será publico y solo se utilizará si deseas cambiar de contraseña o recibir ciertas noticias o notificaciones');
+        $form['account']['name']['#title'] = t('Nombre de usurio');
+        $form['account']['name']['#description'] = t("Varios caracteres especiales son permitidos incluyendo el espacio, punto (.), guión (-), comillas simples ('), barra baja (_), y el arroba @");
+        $form['account']['current_pass']['#title'] = t('Contraseña actual');
+        $form['account']['current_pass']['#description'] = t('Requerido si quieres cambiar el email o la Contraseña. <a href=":request_new_url" title="Send password reset instructions via email.">Resetea tu contraseña</a>.');
+        $form['account']['pass']['#description'] = t('Para cambiar la contraseña actual introduce la nueva contraseña en ambos campos');
+        //$form['account']['pass']['#title'] = t('aaaaaaaa');
+
+
     }
 
-    if($form_id == 'node_asignatura_edit_form') {
+    if ($form_id == 'node_asignatura_edit_form') {
         $form['field_usuarios_matriculados']['widget']['add_more']['#value'] = t('Matricular a otro usuario');
         $form['actions']['submit']['#value'] = t('Guardar');
+        //$form['actions']['submit']['#attributes']['class'][] = 'button glow button-primary expanded';
         $form['actions']['preview']['#value'] = t('Previsualizar');
     }
 
-    if($form_id == 'node_asignatura_form') {
+    if ($form_id == 'node_asignatura_form') {
         $form['field_usuarios_matriculados']['widget']['add_more']['#value'] = t('Matricular a otro usuario');
         $form['actions']['submit']['#value'] = t('Guardar');
         $form['actions']['preview']['#value'] = t('Previsualizar');
@@ -30,7 +43,106 @@ function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterfa
     if ($form_id == 'search_block_form') {
         $form['keys']['#description'] = 'Busca Centros, noticias, asignaturas, etc en GameMoodle!';
         $form['keys']['#title'] = 'Buscar';
-      }
-     
+    }
+
+    // if ($form_id == 'user_login_form'){
+    //     // //$form['actions']['submit']['#value'] = t('Guardar');
+    //     // $form['name']['#attributes']['placeholder'] = t('Introduce tu nombre de usuario');
+    //     // $form['pass']['#attributes']['placeholder'] = t('Introduce tu contraseña');
+    //     $form['name']['#value'] = t('admin');
+    //     $form['pass']['#value'] = t('admin');
+    // }
+
 }
 
+
+/**
+ *  hook para modificar los 'tab menus' contextuales que aparecen en el sitio
+ */
+function alter_form_custom_menu_local_tasks_alter(&$data, $route_name)
+{
+    //$aaa= \Drupal::routeMatch()->getParameters()->all();
+    //dpm($aaa);
+
+    //obtenemos el tipo de ruta de la pagina actual
+    //dpm($data);
+    $nombre_ruta = \Drupal::routeMatch()->getRouteName();
+    //dpm($nombre_ruta);
+
+    //obtenemos el tipo de nodo de la pagina actual
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if (isset($node)) {
+        $typeName = $node->bundle();
+        //$typeLabel = $node->getTitle();
+        //dpm($typeName);
+    }
+
+    //obtenemos el tipo de taxonomia
+    $taxonomy = \Drupal::routeMatch()->getParameter('taxonomy_term');
+    if (isset($taxonomy)) {
+        $typeNameTax = $taxonomy->bundle();
+        //$typeLabelTax = $taxonomy->getTitle();
+        //dpm($typeNameTax);
+    }
+
+    //perfil de usuario
+    if (isset($data['tabs'][0]['entity.user.edit_form']['#link'])) {
+        $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = t('Editar mi perfil');
+    }
+
+    if (isset($data['tabs'][0]['entity.user.canonical']['#link'])) {
+        $data['tabs'][0]['entity.user.canonical']['#link']['title'] = t('Mi perfil');
+    }
+
+    //asignaturas
+    if (
+        $typeName == 'asignatura' && (
+        $nombre_ruta == 'entity.node.canonical' ||
+        $nombre_ruta == 'entity.node.edit_form' ||
+        $nombre_ruta == 'entity.node.delete_form')
+    ) {
+        $data['tabs'][0]['entity.node.canonical']['#link']['title'] = t('Ver asignatura');
+        $data['tabs'][0]['entity.node.edit_form']['#link']['title'] = t('Editar asignatura');
+        $data['tabs'][0]['entity.node.delete_form']['#link']['title'] = t('Borrar asignatura');
+    }
+
+    //Centros de estudio
+    if (  $typeNameTax == 'centros_educativos' && (
+        $nombre_ruta == 'entity.taxonomy_term.canonical' ||
+        $nombre_ruta == 'entity.taxonomy_term.edit_form' )) {
+        $data['tabs'][0]['entity.taxonomy_term.canonical']['#link']['title'] = t('Ver centro');
+        $data['tabs'][0]['entity.taxonomy_term.edit_form']['#link']['title'] = t('Editar centro');
+    }
+}
+
+/**
+ * Implementing hook_preprocess().
+ */
+function alter_form_custom_preprocess(&$variables, $hook)
+{
+    //get username current user
+      //$account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+      //$name = $account->getDisplayName();
+      //dpm($name);
+     if ($hook == 'menu__account') {
+        // kint($variables['items']['user.page']['title']);
+       // $variables['items']['user.page']['title'] = "hey"; //revisar si peta
+      }
+    //kint($hook);
+}
+
+function alter_form_custom_link_alter(&$variables) {
+     //get username current user
+     $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+     $name = $account->getDisplayName();
+     //dpm($name);
+    if ($variables['text'] == 'My account') {
+      $variables['text'] = t($name);
+    }
+    if ($variables['text'] == 'Log out') {
+        $variables['text'] = t('Salir');
+    }
+
+    //kint($variables);
+    
+  }
