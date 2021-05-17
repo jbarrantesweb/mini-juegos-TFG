@@ -31,5 +31,20 @@
     width: 20%;
 }
 
+/* REGION TOP BAR -- PAGE TITLE */
+
+h1.js-quickedit-page-title.page-header {
+    /* text-align: center; */
+}
+
+/* CENTROS EDUCATIVOS TAXONOMY */
+
+.main-container .view-content .views-row {
+    margin-bottom: 15px;
+}
+.main-container .view-content .views-row .views-field.views-field-name a {
+    color: #2d5e88 !important;
+    font-size: 19px;
+}
 /* RESPONSIVE PARA EL MENU */
 
