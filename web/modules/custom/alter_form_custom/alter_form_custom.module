@@ -7,8 +7,23 @@ function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterfa
 {
 
     //dpm($form);
-    //dpm($form);
     //dpm($form['preview']);
+    if ($form_id == 'user_login_form'){
+        $form['name']['#title'] = t('Nombre de usuario');
+        $form['pass']['#title'] = t('Contraseña');
+    }
+
+    if ($form_id == 'user-register-form'){
+        $form['account']['mail']['#title'] = t('Email');
+        $form['account']['name']['#title'] = t('Nombre de usuario');
+        $form['account']['name']['#title'] = t('Nombre de usuario');
+        $form['account']['name']['#title'] = t('Nombre de usuario');
+        $form['account']['name']['#title'] = t('Nombre de usuario');
+    }   
+
+    if ($form_id == 'user_pass'){
+        
+    }
 
     if ($form_id == 'user_form') {
         $form['actions']['submit']['#value'] = t('Guardar');
@@ -44,17 +59,7 @@ function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterfa
         $form['keys']['#description'] = 'Busca Centros, noticias, asignaturas, etc en GameMoodle!';
         $form['keys']['#title'] = 'Buscar';
     }
-
-    // if ($form_id == 'user_login_form'){
-    //     // //$form['actions']['submit']['#value'] = t('Guardar');
-    //     // $form['name']['#attributes']['placeholder'] = t('Introduce tu nombre de usuario');
-    //     // $form['pass']['#attributes']['placeholder'] = t('Introduce tu contraseña');
-    //     $form['name']['#value'] = t('admin');
-    //     $form['pass']['#value'] = t('admin');
-    // }
-
 }
-
 
 /**
  *  hook para modificar los 'tab menus' contextuales que aparecen en el sitio
@@ -69,10 +74,18 @@ function alter_form_custom_menu_local_tasks_alter(&$data, $route_name)
     $nombre_ruta = \Drupal::routeMatch()->getRouteName();
     //dpm($nombre_ruta);
 
-    //obtenemos el tipo de nodo de la pagina actual
-    $node = \Drupal::routeMatch()->getParameter('node');
+    //user login
+    $node = \Drupal::routeMatch()->getParameter('user.login');
     if (isset($node)) {
-        $typeName = $node->bundle();
+        $typeNameLogin = $node->bundle();
+        //$typeLabel = $node->getTitle();
+       //dpm($typeNameLogin);
+    }
+
+    //obtenemos el tipo de nodo de la pagina actual
+    $page = \Drupal::routeMatch()->getParameter('node');
+    if (isset($page)) {
+        $typeName = $page->bundle();
         //$typeLabel = $node->getTitle();
         //dpm($typeName);
     }
@@ -84,6 +97,15 @@ function alter_form_custom_menu_local_tasks_alter(&$data, $route_name)
         //$typeLabelTax = $taxonomy->getTitle();
         //dpm($typeNameTax);
     }
+
+    //pagina de login
+    $data['tabs'][0]['user.login']['#link']['title'] = t('Iniciar sesión');
+
+    //create new account
+    $data['tabs'][0]['user.register']['#link']['title'] = t('Registrarse');
+
+    //create new account
+    $data['tabs'][0]['user.pass']['#link']['title'] = t('Resetear contraseña');
 
     //perfil de usuario
     if (isset($data['tabs'][0]['entity.user.edit_form']['#link'])) {
@@ -115,22 +137,6 @@ function alter_form_custom_menu_local_tasks_alter(&$data, $route_name)
     }
 }
 
-/**
- * Implementing hook_preprocess().
- */
-function alter_form_custom_preprocess(&$variables, $hook)
-{
-    //get username current user
-      //$account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-      //$name = $account->getDisplayName();
-      //dpm($name);
-     if ($hook == 'menu__account') {
-        // kint($variables['items']['user.page']['title']);
-       // $variables['items']['user.page']['title'] = "hey"; //revisar si peta
-      }
-    //kint($hook);
-}
-
 function alter_form_custom_link_alter(&$variables) {
      //get username current user
      $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
@@ -142,7 +148,5 @@ function alter_form_custom_link_alter(&$variables) {
     if ($variables['text'] == 'Log out') {
         $variables['text'] = t('Salir');
     }
-
-    //kint($variables);
-    
   }
+
