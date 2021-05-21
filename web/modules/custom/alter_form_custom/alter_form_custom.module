@@ -6,7 +6,7 @@
 function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
 
-    //dpm($form);
+    dpm($form);
     //dpm($form['preview']);
     if ($form_id == 'user_login_form'){
         $form['name']['#title'] = t('Nombre de usuario');
@@ -148,5 +148,13 @@ function alter_form_custom_link_alter(&$variables) {
     if ($variables['text'] == 'Log out') {
         $variables['text'] = t('Salir');
     }
+}
+
+/**
+* Implements hook_mail_alter
+*/
+function alter_form_custom_mail_alter(&$message) {
+    // set 'To' field to nothing, so Drupal won’t have any address
+    $message['to'] = ''; 
   }
 
