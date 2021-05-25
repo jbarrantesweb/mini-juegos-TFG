@@ -1,0 +1,13 @@
+bloque_juego_ingles_librarie:
+  version: 1.x
+  css:
+    layout:
+      css/bloque_juego-layout.css: {}
+    theme:
+      css/bloque_juego-theme.css: {}
+      css/styles_tablero.css: {}
+      css/styles.css: {}
+      css/styles_sprite.css: {}
+  js:
+    js/bloque_juego.js: {}
+    js/functions.js: {}

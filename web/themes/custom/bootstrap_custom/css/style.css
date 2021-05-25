@@ -33,8 +33,20 @@
 
 /* REGION TOP BAR -- PAGE TITLE */
 
+.page-header {
+     padding-bottom: 0px; 
+    /* margin: 0px; */
+    border-bottom: 0px; 
+}
+
 h1.js-quickedit-page-title.page-header {
     /* text-align: center; */
+}
+
+
+.slider_main {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 /* CENTROS EDUCATIVOS TAXONOMY */

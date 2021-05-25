@@ -1,0 +1,101 @@
+/* HOJA DE ESTILOS PARA LOS SPRITES */
+
+
+.sprite-correcto {
+    background-image: url("../images/sprites/sprite_correcto.png");
+    background-repeat: no-repeat;
+    display: block;
+    
+}
+
+.sprite-correcto1 {
+    width: 100px;
+    height: 100px;
+    background-position: -5px -5px;
+    
+}
+
+.sprite-correcto1:hover {
+    width: 100px;
+    height: 100px;
+    background-position: -115px -5px;
+   
+}
+
+.sprite-correcto1:active {
+    border-radius: 45px;
+    width: 100px;
+    height: 100px;
+    background-position: -115px -5px;
+    background-color: #4fc84f;
+}
+
+
+.sprite-incorrecto {
+    background-image: url("../images/sprites/sprite_incorrecto.png");
+    background-repeat: no-repeat;
+    display: block;
+    
+}
+
+.sprite-incorrecto1 {
+    width: 100px;
+    height: 100px;
+    background-position: -5px -5px;
+    
+}
+
+.sprite-incorrecto1:hover {
+    width: 100px;
+    height: 100px;
+    background-position: -115px -5px;
+   
+}
+
+.sprite-incorrecto1:active {
+    border-radius: 45px;
+    width: 100px;
+    height: 100px;
+    background-position: -115px -5px;
+    background-color: #f44336;
+}
+
+.sprite-play {
+    background-image: url("../images/sprites/sprite_play.png");
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-play1{
+    width: 64px;
+    height: 64px;
+    background-position: -5px -5px;
+}
+
+.sprite-play1:hover{
+    width: 64px;
+    height: 64px;
+    background-position: -79px -5px;
+}
+
+.sprite-replay {
+    background-image: url("../images/sprites/sprite_replay.png");
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-replay1 {
+    width: 64px;
+    height: 64px;
+    background-position: -5px -5px;
+}
+
+.sprite-replay1:hover {
+    width: 64px;
+    height: 64px;
+    background-position: -79px -5px;
+}
+
+.rojo{
+    color: #dc3545;
+}

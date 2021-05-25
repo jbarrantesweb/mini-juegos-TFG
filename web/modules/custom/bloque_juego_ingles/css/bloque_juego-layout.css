@@ -1,0 +1,55 @@
+
+/* TABLERO */
+
+#tablero {
+    display: block;
+    border: 10px solid #ad7121;
+    box-shadow: 0px 0px 4px #929292 inset;
+    font-family: 'Pizarra';
+    margin: auto;
+    margin-top: 30px;
+    padding: 15px;
+    width: 700px;
+    height: 375px;
+    background: url(../fondos/black_linen_v2.png) !important; 
+    background-color: #222222;
+    color: white;
+    font-size: 65px;
+    line-height: 110%;
+    margin-bottom: 30px;
+    text-align: center;
+    
+}
+
+#contenido_tablero {
+    margin: auto;
+    /*
+    width: 90%;
+    height: 70%;
+    */
+}
+
+.tablero_ingame {
+    text-align: left;
+    font-size: 54px;
+    line-height: 100%;
+}
+
+#centrado{
+    text-align: left !important;
+}
+
+/*
+.tablero_ranking {
+    padding-left: 15px;
+    font-size: 4vw !important;
+    padding-top: 2%;
+    text-align: left !important;
+    line-height: 230% !important;
+}
+
+*/
+.tablero_gameOver {
+    text-align: center !important;
+    line-height: 150% !important;
+}

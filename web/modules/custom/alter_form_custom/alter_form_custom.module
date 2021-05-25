@@ -8,21 +8,30 @@ function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterfa
 
     dpm($form);
     //dpm($form['preview']);
-    if ($form_id == 'user_login_form'){
+    if ($form_id == 'user_login_form') {
         $form['name']['#title'] = t('Nombre de usuario');
+        $form['name']['#description'] = t('Introduce el nombre de usuario con el que te registraste.');
         $form['pass']['#title'] = t('Contraseña');
+        $form['pass']['#description'] = t('Introduce la contraseña con la que te registrarte.');
     }
 
-    if ($form_id == 'user-register-form'){
+    //get username current user
+    $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $name = $account->getDisplayName();
+
+    if ($form_id == 'user_cancel_form') {
+        $form['actions']['submit']['#value'] = t('Borrar Cuenta');
+        $form['account']['cancel']['#title'] = t('Cancelar');
+        $form['#title'] = t('¿Seguro que quieres borrar la cuenta de ' . $name . '?');
+        $form['user_cancel_method']['user_cancel_block_unpublish']['#confirm_description'] = t('Tu cuenta será bloqueada y no podrás volver a iniciar sesión. Todo tu contenido será oculto para todos los usuarios salvo para el administrador.');
+    }
+
+    if ($form_id == 'user_register_form') {
         $form['account']['mail']['#title'] = t('Email');
         $form['account']['name']['#title'] = t('Nombre de usuario');
-        $form['account']['name']['#title'] = t('Nombre de usuario');
-        $form['account']['name']['#title'] = t('Nombre de usuario');
-        $form['account']['name']['#title'] = t('Nombre de usuario');
-    }   
+    }
 
-    if ($form_id == 'user_pass'){
-        
+    if ($form_id == 'user_pass') {
     }
 
     if ($form_id == 'user_form') {
@@ -42,10 +51,21 @@ function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterfa
     }
 
     if ($form_id == 'node_asignatura_edit_form') {
+
+        $node = \Drupal::routeMatch()->getParameter('node');
+        $name_asignatura = $node->getTitle();
+        //dpm($name_asignatura);
+       
+        $form['#title'] = t('<em> Editar </em> ' . $name_asignatura);
         $form['field_usuarios_matriculados']['widget']['add_more']['#value'] = t('Matricular a otro usuario');
         $form['actions']['submit']['#value'] = t('Guardar');
         //$form['actions']['submit']['#attributes']['class'][] = 'button glow button-primary expanded';
         $form['actions']['preview']['#value'] = t('Previsualizar');
+        $form['actions']['delete']['#title'] = t('Borrar asignatura');
+        //$form['actions']['delete']['#button_type'] = t('danger');
+        $form['field_archivos']['widget']['#file_upload_title'] = t('Añadir un nuevo archivo');
+
+
     }
 
     if ($form_id == 'node_asignatura_form') {
@@ -53,6 +73,16 @@ function alter_form_custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterfa
         $form['actions']['submit']['#value'] = t('Guardar');
         $form['actions']['preview']['#value'] = t('Previsualizar');
         $form['actions']['delete']['#title'] = t('Borrar Asignatura');
+    }
+
+
+
+    if ($form_id == 'node_asignatura_delete_form') {
+
+        $form['#title'] = t('¿Seguro que quires borrar la asignatura?"');
+        $form['description']['#markup'] = t('Si borrar la asignatura no podrás volver atrás');
+        $form['actions']['submit']['#value'] = t('Borrar asignatura');
+        $form['actions']['cancel']['#title'] = t('Cancelar');
     }
 
     if ($form_id == 'search_block_form') {
@@ -79,7 +109,7 @@ function alter_form_custom_menu_local_tasks_alter(&$data, $route_name)
     if (isset($node)) {
         $typeNameLogin = $node->bundle();
         //$typeLabel = $node->getTitle();
-       //dpm($typeNameLogin);
+        //dpm($typeNameLogin);
     }
 
     //obtenemos el tipo de nodo de la pagina actual
@@ -118,10 +148,9 @@ function alter_form_custom_menu_local_tasks_alter(&$data, $route_name)
 
     //asignaturas
     if (
-        $typeName == 'asignatura' && (
-        $nombre_ruta == 'entity.node.canonical' ||
-        $nombre_ruta == 'entity.node.edit_form' ||
-        $nombre_ruta == 'entity.node.delete_form')
+        $typeName == 'asignatura' && ($nombre_ruta == 'entity.node.canonical' ||
+            $nombre_ruta == 'entity.node.edit_form' ||
+            $nombre_ruta == 'entity.node.delete_form')
     ) {
         $data['tabs'][0]['entity.node.canonical']['#link']['title'] = t('Ver asignatura');
         $data['tabs'][0]['entity.node.edit_form']['#link']['title'] = t('Editar asignatura');
@@ -129,32 +158,35 @@ function alter_form_custom_menu_local_tasks_alter(&$data, $route_name)
     }
 
     //Centros de estudio
-    if (  $typeNameTax == 'centros_educativos' && (
-        $nombre_ruta == 'entity.taxonomy_term.canonical' ||
-        $nombre_ruta == 'entity.taxonomy_term.edit_form' )) {
+    if ($typeNameTax == 'centros_educativos' && ($nombre_ruta == 'entity.taxonomy_term.canonical' ||
+        $nombre_ruta == 'entity.taxonomy_term.edit_form')) {
         $data['tabs'][0]['entity.taxonomy_term.canonical']['#link']['title'] = t('Ver centro');
         $data['tabs'][0]['entity.taxonomy_term.edit_form']['#link']['title'] = t('Editar centro');
     }
 }
 
-function alter_form_custom_link_alter(&$variables) {
-     //get username current user
-     $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-     $name = $account->getDisplayName();
-     //dpm($name);
+function alter_form_custom_link_alter(&$variables)
+{
+    //get username current user
+    $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $name = $account->getDisplayName();
+    //dpm($name);
     if ($variables['text'] == 'My account') {
-      $variables['text'] = t($name);
+        $variables['text'] = t($name);
     }
     if ($variables['text'] == 'Log out') {
         $variables['text'] = t('Salir');
     }
+    if ($variables['text'] == 'Log in') {
+        $variables['text'] = t('Iniciar Sesión');
+    }
 }
 
 /**
-* Implements hook_mail_alter
-*/
-function alter_form_custom_mail_alter(&$message) {
+ * Implements hook_mail_alter
+ */
+function alter_form_custom_mail_alter(&$message)
+{
     // set 'To' field to nothing, so Drupal won’t have any address
-    $message['to'] = ''; 
-  }
-
+    $message['to'] = '';
+}
